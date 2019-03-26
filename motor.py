@@ -1,6 +1,5 @@
 import RPi.GPIO as gpio
 import time
-gpio.setmode(gpio.BCM)
 
 class Motor:
 
@@ -56,6 +55,7 @@ class Motor:
 
 def main():
 
+    gpio.setmode(gpio.BCM)
 
     motor1 = Motor(input1 = 22 , input2 = 27 , input3 = 17 , input4 = 4)
     motor1.forward()
