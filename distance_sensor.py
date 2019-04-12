@@ -11,6 +11,7 @@ from defines import FAR_DISTANCE
 
 import RPi.GPIO as gpio
 from time import sleep
+from motor import Motor
 
 
 class DistanceSensor:
@@ -39,6 +40,7 @@ class DistanceSensor:
 def main():
     gpio.setmode(gpio.BCM)
     distance_sensor = DistanceSensor()
+    motor = Motor(input1 = 22 , input2 = 27 , input3 = 17 , input4 = 4)
 
     try:
         while True:
@@ -56,22 +58,35 @@ def main():
 
                 if distance_sensor.is_far(distance):
                     print("Forward")
+                    motor.forward()
                     sleep(DISTANCE_SLEEP)
+                    motor.stop()
                     continue
 
 
                 if distance_sensor.is_close(distance):
                     print("Backword")
+                    motor.reverse()
                     sleep(DISTANCE_SLEEP)
+                    motor.stop()
                     continue
 
 
                 print("....")
+
                 sleep(DISTANCE_SLEEP)
 
     except KeyboardInterrupt:
             gpio.cleanup()
 
 
+def test():
+    gpio.setmode(gpio.BCM)
+    distance_sensor = DistanceSensor()
+    motor = Motor(input1 = 22 , input2 = 27 , input3 = 17 , input4 = 4)
+
+
+    while True:
+        motor.forward()
 if __name__ == "__main__":
     main()

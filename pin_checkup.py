@@ -11,12 +11,10 @@ class LED:
         GPIO.output(self.pin_num , False)
 
     def turn_on(self):
-        print("turn on")
         GPIO.output(self.pin_num , True)
 
 
     def turn_off(self):
-        print("turn off")
         GPIO.output(self.pin_num , False)
 
 
@@ -33,11 +31,12 @@ def main():
     try:
 
         while True:
+            print("on")
             led.turn_on()
             time.sleep(1.0)
+            print("off")
             led.turn_off()
             time.sleep(1.0)
-            print("")
 
     except KeyboardInterrupt:
         GPIO.cleanup()
