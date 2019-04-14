@@ -1,7 +1,5 @@
 from time import sleep
 import RPi.GPIO as gpio
-from defines import MOTOR_ENCODER_1
-from defines import MOTOR_ENCODER_2
 from defines import ROTATION
 
 from encoder import Encoder
